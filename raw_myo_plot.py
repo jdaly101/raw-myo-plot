@@ -28,20 +28,24 @@ class RawWindow(QtGui.QMainWindow):
         l = QtGui.QGridLayout()
         cw.setLayout(l)
         
-        titleLabel = QtGui.QLabel('Myo Data Acquirer')       
+        titleLabel = QtGui.QLabel('Myo Data Acquirer')
+        titleLabel.setFont(QtGui.QFont("Garamond", 16, QtGui.QFont.Bold))
         l.addWidget(titleLabel, 0, 0, 2, 1)
 
         self.emgplot = pg.PlotWidget(name='EMGplot')
         self.emgplot.setRange(QtCore.QRectF(-50,-200,1000,1400))
         self.emgplot.disableAutoRange()
+        self.emgplot.setTitle("EMG")
         l.addWidget(self.emgplot, 0, 1, 1, 2)
 
         self.accplot = pg.PlotWidget(name='ACCplot')
-        #self.accplot.setRange(QtCore.QRectF(0,-2,1000,2))
+        self.accplot.setRange(QtCore.QRectF(0,-2,1000,7))
+        self.accplot.setTitle("Accelerometer")
         l.addWidget(self.accplot, 1, 1, 1, 1)
 
         self.oriplot = pg.PlotWidget(name='ORIplot')
-        #self.oriplot.setRange(QtCore.QRectF(0,0,1,1))
+        self.oriplot.setRange(QtCore.QRectF(0,-1,1000,8))
+        self.oriplot.setTitle("Orientation")
         l.addWidget(self.oriplot, 1,2,1,1)
 
         self.refreshRate = 0.05
